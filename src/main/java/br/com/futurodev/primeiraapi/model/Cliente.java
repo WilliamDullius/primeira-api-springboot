@@ -1,16 +1,14 @@
 package br.com.futurodev.primeiraapi.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-
 
 @Getter
 @Setter
@@ -18,8 +16,9 @@ import java.util.List;
 @Table(name = "cliente")
 public class Cliente implements Serializable{
 
+    private static final long serialVersionUID = 1L;
 
-    @EqualsAndHashCode.Include
+	@EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,9 +31,7 @@ public class Cliente implements Serializable{
 
     private String rg;
 
-
     @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
-    //@JsonManagedReference
     private List<Pedido> pedidos;
 
     @JsonManagedReference
